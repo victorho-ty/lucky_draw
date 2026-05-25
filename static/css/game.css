@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0d0d2b;
+  overflow: hidden;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* ── Canvas ── */
+#canvas-container {
+  position: fixed;
+  inset: 0;
+}
+
+#canvas-container canvas {
+  display: block;
+}
+
+/* ── HUD ── */
+#hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent);
+  pointer-events: none;
+}
+
+#participant-count {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+}
+
+#admin-link {
+  pointer-events: all;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+#admin-link:hover {
+  color: white;
+  border-color: white;
+}
+
+/* ── Start Button ── */
+#start-btn {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6a5acd, #9b7dff);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 26px 56px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 0 48px rgba(106, 90, 205, 0.75), 0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s, box-shadow 0.2s;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+#start-btn:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 0 64px rgba(155, 125, 255, 1), 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+#start-btn:active {
+  transform: translate(-50%, -50%) scale(0.97);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 48px rgba(106, 90, 205, 0.75), 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 72px rgba(155, 125, 255, 1), 0 10px 40px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* ── Winner Banner ── */
+#winner-banner {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+#winner-banner.banner-animate {
+  animation: bannerIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes bannerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.93);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#banner-content {
+  background: linear-gradient(145deg, #1a1a4a, #28185e);
+  border: 2px solid rgba(255, 215, 0, 0.55);
+  border-radius: 24px;
+  padding: 44px 64px;
+  text-align: center;
+  box-shadow: 0 0 80px rgba(255, 215, 0, 0.25), 0 24px 60px rgba(0, 0, 0, 0.8);
+  max-width: 740px;
+  width: 90vw;
+}
+
+#banner-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: #ffd700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  text-shadow: 0 0 24px rgba(255, 215, 0, 0.8);
+}
+
+#winner-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.winner-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 12px 22px;
+  text-align: left;
+}
+
+.medal {
+  font-size: 34px;
+  min-width: 44px;
+  text-align: center;
+}
+
+.winner-emoji {
+  font-size: 38px;
+}
+
+.winner-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+#new-game-btn {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 44px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(40, 167, 69, 0.45);
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+#new-game-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 32px rgba(40, 167, 69, 0.7);
+}
+
+#new-game-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── HUD left group ── */
+#hud-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Stage indicator pill ── */
+#stage-indicator {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 12px;
+  background: rgba(0, 210, 211, 0.2);
+  border: 1px solid rgba(0, 210, 211, 0.5);
+  border-radius: 12px;
+}
+
+/* ── Filter banner (stage-complete, blue/teal theme) ── */
+#banner-content.banner-filter {
+  background: linear-gradient(145deg, #0a2a3a, #083348);
+  border-color: rgba(0, 210, 211, 0.55);
+  box-shadow: 0 0 80px rgba(0, 210, 211, 0.2), 0 24px 60px rgba(0, 0, 0, 0.8);
+}
+
+#banner-content.banner-filter #banner-title {
+  color: #00d2d3;
+  text-shadow: 0 0 24px rgba(0, 210, 211, 0.8);
+}
+
+.advance-num {
+  font-size: 22px;
+  font-weight: 900;
+  color: #00d2d3;
+  min-width: 44px;
+  text-align: center;
+}
+
+/* ── Banner buttons row ── */
+#banner-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* ── Next Stage button ── */
+#next-stage-btn {
+  background: linear-gradient(135deg, #0099cc, #00d2d3);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 44px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 153, 204, 0.45);
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+#next-stage-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 32px rgba(0, 210, 211, 0.7);
+}
+
+#next-stage-btn:active {
+  transform: scale(0.97);
+}

@@ -1,0 +1,15 @@
+[project]
+name = "lucky-draw"
+version = "0.1.0"
+description = "Physics-based lucky draw web app"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.111.0",
+    "jinja2>=3.1.0",
+    "python-multipart>=0.0.9",
+    "uvicorn[standard]>=0.29.0",
+]
+
+[tool.uv]
+package = false

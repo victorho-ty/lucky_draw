@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucky Draw — Admin</title>
+  <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+
+    <header class="admin-header">
+      <h1 class="admin-title">🎲 Lucky Draw Admin</h1>
+      <a href="/" class="game-link" target="_blank">🎮 Open Game</a>
+    </header>
+
+    <!-- ── Participants ── -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Participants</h2>
+        <span id="count-badge" class="count-badge">0 participants</span>
+      </div>
+
+      <table class="participant-table">
+        <thead>
+          <tr>
+            <th>Emoji</th>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="participant-tbody"></tbody>
+      </table>
+
+      <!-- Add participant form -->
+      <div class="add-form">
+        <div class="add-form-title">Add Participant</div>
+
+        <div class="selected-emoji-row">
+          <span id="selected-emoji-display">😀</span>
+          <span class="selected-label">Click an emoji below to select it</span>
+        </div>
+
+        <div id="emoji-picker" class="emoji-picker-grid"></div>
+
+        <div class="name-row">
+          <input type="text" id="participant-name" class="name-input"
+                 placeholder="Enter participant name…" maxlength="30" autocomplete="off">
+          <button id="add-participant-btn" class="add-btn">+ Add</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Round Settings ── -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Round Settings</h2>
+      </div>
+
+      <div class="settings-grid">
+        <div class="setting-item">
+          <label for="winners-count">Number of Winners</label>
+          <input type="number" id="winners-count" class="number-input" min="1" max="20" value="3">
+        </div>
+
+        <div class="setting-item">
+          <label>Ball Drop Speed</label>
+          <div class="speed-options">
+            <label class="speed-label">
+              <input type="radio" name="speed" class="speed-radio" value="slow">
+              🐢 Slow
+            </label>
+            <label class="speed-label">
+              <input type="radio" name="speed" class="speed-radio" value="medium" checked>
+              🚶 Medium
+            </label>
+            <label class="speed-label">
+              <input type="radio" name="speed" class="speed-radio" value="fast">
+              🚀 Fast
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="save-row">
+        <button id="save-config-btn" class="save-btn">Save Settings</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="/static/js/admin.js"></script>
+</body>
+</html>

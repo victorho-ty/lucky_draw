@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucky Draw 🎲</title>
+  <link rel="stylesheet" href="/static/css/game.css">
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <div id="hud">
+    <div id="hud-left">
+      <span id="participant-count">Loading…</span>
+      <span id="stage-indicator" style="display:none"></span>
+    </div>
+    <a href="/admin" id="admin-link">⚙ Admin</a>
+  </div>
+
+  <button id="start-btn">🎲 Start Round</button>
+
+  <div id="winner-banner">
+    <div id="banner-content">
+      <div id="banner-title">🏆 Winners! 🏆</div>
+      <div id="winner-list"></div>
+      <div id="banner-buttons">
+        <button id="next-stage-btn" style="display:none">▶ Next Stage</button>
+        <button id="new-game-btn">🔄 New Game</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <script src="/static/js/game.js"></script>
+</body>
+</html>
