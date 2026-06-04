@@ -6,9 +6,13 @@ A physics-based lucky draw web app. Emoji+name balls fall through a peg board, f
 
 ```bash
 cd lucky_draw
-pip install -r requirements.txt
-uvicorn app:app --reload --port 8000
+uv run python -m uvicorn app:app --reload --port 8000
 ```
+
+### Windows Caveat
+uv run python runs the venv's Python interpreter directly, and -m uvicorn loads uvicorn as a Python module. 
+If doing a direct "uv run uvicorn" will try to resolve a .exe wrapper that sometimes has path quirks on Windows.
+
 
 | Page | URL |
 |------|-----|
