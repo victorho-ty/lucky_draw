@@ -253,7 +253,7 @@ body {
   transform: translateX(-50%);
   z-index: 11;
   max-width: 85vw;
-  width: calc(100% - 40px);
+  width: calc(100% - 32px);
   pointer-events: none;
 }
 
@@ -262,8 +262,8 @@ body {
   width: 100%;
   text-align: center;
   border-radius: 12px;
-  padding: 10px 20px;
-  font-size: clamp(14px, 2.5vw, 22px);
+  padding: 8px 16px;
+  font-size: clamp(11px, 2vw, 18px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -278,8 +278,8 @@ body {
   letter-spacing: 3px;
   text-transform: uppercase;
   font-weight: 400;
-  font-size: clamp(28px, 4.5vw, 52px);
-  padding: 14px 32px;
+  font-size: clamp(22px, 3.6vw, 42px);
+  padding: 11px 26px;
 }
 
 .banner-style-neon {
@@ -292,8 +292,8 @@ body {
   text-shadow: 0 0 10px #00fff7, 0 0 20px #00bfff, 0 0 40px #007fff;
   letter-spacing: 2px;
   font-weight: 700;
-  font-size: clamp(32px, 5vw, 60px);
-  padding: 16px 36px;
+  font-size: clamp(26px, 4vw, 48px);
+  padding: 13px 29px;
   animation: neon-flicker 4s ease-in-out infinite;
 }
 
@@ -311,8 +311,8 @@ body {
   text-shadow: 2px 2px 0 #8b0000, 0 0 12px rgba(255, 215, 0, 0.8);
   letter-spacing: 2px;
   font-weight: 900;
-  font-size: clamp(32px, 5vw, 60px);
-  padding: 16px 36px;
+  font-size: clamp(26px, 4vw, 48px);
+  padding: 13px 29px;
   animation: festive-pulse 2.5s ease-in-out infinite;
 }
 
@@ -324,7 +324,7 @@ body {
 .custom-banner-img {
   display: block;
   max-width: 100%;
-  max-height: 250px;
+  max-height: 200px;
   border-radius: 10px;
   object-fit: contain;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
