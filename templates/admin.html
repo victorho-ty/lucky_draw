@@ -87,6 +87,81 @@
       </div>
     </section>
 
+    <!-- ── Banner ── -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Banner</h2>
+      </div>
+
+      <!-- Mode selector -->
+      <div class="banner-mode-row">
+        <label class="banner-mode-label">
+          <input type="radio" name="banner-type" class="banner-type-radio" value="none" checked>
+          None
+        </label>
+        <label class="banner-mode-label">
+          <input type="radio" name="banner-type" class="banner-type-radio" value="text">
+          ✏ Text
+        </label>
+        <label class="banner-mode-label">
+          <input type="radio" name="banner-type" class="banner-type-radio" value="image">
+          🖼 Image
+        </label>
+      </div>
+
+      <!-- Text panel -->
+      <div id="banner-text-panel" class="banner-panel" style="display:none">
+        <div class="setting-item">
+          <label for="banner-text-input">Banner Text</label>
+          <input type="text" id="banner-text-input" class="name-input"
+                 placeholder="e.g. Welcome to Lucky Draw 2025!" maxlength="80" autocomplete="off">
+          <div class="banner-char-count"><span id="banner-char-num">0</span>/80</div>
+        </div>
+
+        <div class="setting-item" style="margin-top:18px">
+          <label>Style</label>
+          <div class="banner-style-options">
+            <label class="banner-style-card">
+              <input type="radio" name="banner-style" class="banner-style-radio" value="elegant" checked>
+              <span class="style-card-inner style-elegant-preview">Elegant</span>
+            </label>
+            <label class="banner-style-card">
+              <input type="radio" name="banner-style" class="banner-style-radio" value="neon">
+              <span class="style-card-inner style-neon-preview">Neon</span>
+            </label>
+            <label class="banner-style-card">
+              <input type="radio" name="banner-style" class="banner-style-radio" value="festive">
+              <span class="style-card-inner style-festive-preview">Festive</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image panel -->
+      <div id="banner-image-panel" class="banner-panel" style="display:none">
+        <div id="banner-drop-zone" class="banner-drop-zone">
+          <div class="drop-zone-inner">
+            <span class="drop-zone-icon">🖼️</span>
+            <span class="drop-zone-text">Drag & drop an image here, or click to browse</span>
+            <span class="drop-zone-hint">JPEG · PNG · GIF · WebP · max 2 MB</span>
+          </div>
+          <input type="file" id="banner-file-input" accept="image/jpeg,image/png,image/gif,image/webp"
+                 style="display:none">
+        </div>
+        <div id="banner-upload-error" class="banner-upload-error" style="display:none"></div>
+      </div>
+
+      <!-- Live preview -->
+      <div id="banner-preview-area" class="banner-preview-area" style="display:none">
+        <div class="add-form-title">Preview</div>
+        <div id="banner-preview-box" class="banner-preview-box"></div>
+      </div>
+
+      <div class="save-row">
+        <button id="save-banner-btn" class="save-btn">Save Banner</button>
+      </div>
+    </section>
+
   </div>
 
   <script src="/static/js/admin.js"></script>

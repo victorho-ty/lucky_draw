@@ -245,6 +245,92 @@ body {
   justify-content: center;
 }
 
+/* ── Custom Banner ── */
+#custom-banner {
+  position: fixed;
+  top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  max-width: 85vw;
+  width: calc(100% - 40px);
+  pointer-events: none;
+}
+
+.custom-banner-text {
+  display: block;
+  width: 100%;
+  text-align: center;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: clamp(14px, 2.5vw, 22px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.banner-style-elegant {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #f0e6ff;
+  background: rgba(26, 20, 60, 0.82);
+  border: 1px solid rgba(180, 160, 255, 0.35);
+  box-shadow: 0 2px 20px rgba(106, 90, 205, 0.4);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: clamp(28px, 4.5vw, 52px);
+  padding: 14px 32px;
+}
+
+.banner-style-neon {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #00fff7;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(0, 255, 247, 0.45);
+  box-shadow: 0 0 12px rgba(0, 255, 247, 0.6), 0 0 30px rgba(0, 191, 255, 0.4),
+              inset 0 0 8px rgba(0, 255, 247, 0.08);
+  text-shadow: 0 0 10px #00fff7, 0 0 20px #00bfff, 0 0 40px #007fff;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 60px);
+  padding: 16px 36px;
+  animation: neon-flicker 4s ease-in-out infinite;
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.85; }
+}
+
+.banner-style-festive {
+  font-family: Impact, 'Arial Black', sans-serif;
+  color: #ffd700;
+  background: linear-gradient(135deg, rgba(160, 10, 10, 0.85), rgba(100, 0, 50, 0.85));
+  border: 2px solid rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 16px rgba(255, 80, 0, 0.5), 0 3px 12px rgba(0, 0, 0, 0.6);
+  text-shadow: 2px 2px 0 #8b0000, 0 0 12px rgba(255, 215, 0, 0.8);
+  letter-spacing: 2px;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 60px);
+  padding: 16px 36px;
+  animation: festive-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes festive-pulse {
+  0%, 100% { box-shadow: 0 0 16px rgba(255, 80, 0, 0.5), 0 3px 12px rgba(0, 0, 0, 0.6); }
+  50%       { box-shadow: 0 0 28px rgba(255, 165, 0, 0.8), 0 3px 12px rgba(0, 0, 0, 0.6); }
+}
+
+.custom-banner-img {
+  display: block;
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  margin: 0 auto;
+}
+
 /* ── Next Stage button ── */
 #next-stage-btn {
   background: linear-gradient(135deg, #0099cc, #00d2d3);

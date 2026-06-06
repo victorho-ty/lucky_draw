@@ -473,6 +473,30 @@ async function fetchState() {
   const res  = await fetch('/api/state');
   stateData  = await res.json();
   updateHud();
+  renderCustomBanner();
+}
+
+function renderCustomBanner() {
+  const el    = document.getElementById('custom-banner');
+  const bdata = stateData.banner;
+  if (!bdata || bdata.type === 'none') {
+    el.style.display = 'none';
+    el.innerHTML     = '';
+    return;
+  }
+  if (bdata.type === 'text') {
+    el.innerHTML     = `<div class="custom-banner-text banner-style-${bdata.style}">${escapeHtml(bdata.text)}</div>`;
+    el.style.display = '';
+    return;
+  }
+  if (bdata.type === 'image' && typeof bdata.image_data === 'string'
+      && bdata.image_data.startsWith('data:image/')) {
+    el.innerHTML     = `<img class="custom-banner-img" src="${bdata.image_data}" alt="Event banner">`;
+    el.style.display = '';
+    return;
+  }
+  el.style.display = 'none';
+  el.innerHTML     = '';
 }
 
 function updateStartBtn() {

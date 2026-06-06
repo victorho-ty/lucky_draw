@@ -1,7 +1,8 @@
+import base64
 import uuid
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -20,6 +21,12 @@ state: dict = {
         "winners_count": 3,
         "speed": "medium",
     },
+    "banner": {
+        "type": "none",       # "none" | "text" | "image"
+        "text": "",
+        "style": "elegant",   # "elegant" | "neon" | "festive"
+        "image_data": None,
+    },
 }
 
 
@@ -32,6 +39,12 @@ class ParticipantIn(BaseModel):
 class ConfigIn(BaseModel):
     winners_count: int
     speed: str
+
+
+class BannerIn(BaseModel):
+    type: str
+    text: str = ""
+    style: str = "elegant"
 
 
 # ─── Routes ────────────────────────────────────────────────────────────────────
@@ -83,3 +96,37 @@ async def update_config(config: ConfigIn):
     state["config"]["winners_count"] = config.winners_count
     state["config"]["speed"] = config.speed
     return state["config"]
+
+
+@app.put("/api/banner")
+async def update_banner(banner: BannerIn):
+    if banner.type not in ("none", "text", "image"):
+        raise HTTPException(status_code=400, detail="type must be none, text, or image")
+    if banner.style not in ("elegant", "neon", "festive"):
+        raise HTTPException(status_code=400, detail="style must be elegant, neon, or festive")
+    text = banner.text.strip()
+    if banner.type == "text":
+        if not text:
+            raise HTTPException(status_code=400, detail="text must not be empty")
+        if len(text) > 80:
+            raise HTTPException(status_code=400, detail="text must be 80 characters or fewer")
+    state["banner"]["type"] = banner.type
+    state["banner"]["text"] = text
+    state["banner"]["style"] = banner.style
+    return state["banner"]
+
+
+@app.post("/api/banner/upload")
+async def upload_banner_image(file: UploadFile = File(...)):
+    MAX_BYTES = 2 * 1024 * 1024
+    ALLOWED_MIME = {"image/jpeg", "image/png", "image/gif", "image/webp"}
+    if file.content_type not in ALLOWED_MIME:
+        raise HTTPException(status_code=400, detail="image must be jpeg, png, gif, or webp")
+    raw = await file.read(MAX_BYTES + 1)
+    if len(raw) > MAX_BYTES:
+        raise HTTPException(status_code=413, detail="image must be 2 MB or smaller")
+    encoded = base64.b64encode(raw).decode("ascii")
+    data_url = f"data:{file.content_type};base64,{encoded}"
+    state["banner"]["image_data"] = data_url
+    state["banner"]["type"] = "image"
+    return {"ok": True, "data_url": data_url}
